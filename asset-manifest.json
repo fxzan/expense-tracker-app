@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "/fxzan/expense-tracker-app/static/css/main.6bfe29b5.chunk.css",
-    "main.js": "/fxzan/expense-tracker-app/static/js/main.fb238947.chunk.js",
-    "main.js.map": "/fxzan/expense-tracker-app/static/js/main.fb238947.chunk.js.map",
-    "runtime-main.js": "/fxzan/expense-tracker-app/static/js/runtime-main.a6f3ef7d.js",
-    "runtime-main.js.map": "/fxzan/expense-tracker-app/static/js/runtime-main.a6f3ef7d.js.map",
-    "static/js/2.5ab64189.chunk.js": "/fxzan/expense-tracker-app/static/js/2.5ab64189.chunk.js",
-    "static/js/2.5ab64189.chunk.js.map": "/fxzan/expense-tracker-app/static/js/2.5ab64189.chunk.js.map",
-    "index.html": "/fxzan/expense-tracker-app/index.html",
-    "static/css/main.6bfe29b5.chunk.css.map": "/fxzan/expense-tracker-app/static/css/main.6bfe29b5.chunk.css.map",
-    "static/js/2.5ab64189.chunk.js.LICENSE.txt": "/fxzan/expense-tracker-app/static/js/2.5ab64189.chunk.js.LICENSE.txt"
+    "main.css": "/expense-tracker-app/static/css/main.6bfe29b5.chunk.css",
+    "main.js": "/expense-tracker-app/static/js/main.fb238947.chunk.js",
+    "main.js.map": "/expense-tracker-app/static/js/main.fb238947.chunk.js.map",
+    "runtime-main.js": "/expense-tracker-app/static/js/runtime-main.f9a0782b.js",
+    "runtime-main.js.map": "/expense-tracker-app/static/js/runtime-main.f9a0782b.js.map",
+    "static/js/2.5ab64189.chunk.js": "/expense-tracker-app/static/js/2.5ab64189.chunk.js",
+    "static/js/2.5ab64189.chunk.js.map": "/expense-tracker-app/static/js/2.5ab64189.chunk.js.map",
+    "index.html": "/expense-tracker-app/index.html",
+    "static/css/main.6bfe29b5.chunk.css.map": "/expense-tracker-app/static/css/main.6bfe29b5.chunk.css.map",
+    "static/js/2.5ab64189.chunk.js.LICENSE.txt": "/expense-tracker-app/static/js/2.5ab64189.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.a6f3ef7d.js",
+    "static/js/runtime-main.f9a0782b.js",
     "static/js/2.5ab64189.chunk.js",
     "static/css/main.6bfe29b5.chunk.css",
     "static/js/main.fb238947.chunk.js"
