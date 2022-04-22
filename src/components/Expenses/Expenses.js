@@ -6,14 +6,30 @@ import Card from "../UI/Card";
 import "./Expenses.css";
 
 function Expenses(props) {
-  const [filteredYear, setFilteredYear] = useState(2019);
+  const [yearList, setYearList] = useState([]);
+  const [filteredYear, setFilteredYear] = useState(yearList[0]);
+
+  React.useEffect(() => {
+    let listOfYears = {};
+    props.items.forEach((item) => {
+      listOfYears[new Date(item.date).getFullYear().toString()] = 1;
+    });
+    listOfYears = Object.keys(listOfYears)
+      .filter((key) => key)
+      .sort()
+      .reverse();
+    setYearList(listOfYears);
+    setFilteredYear(listOfYears[0]);
+  }, [props.items]);
 
   function filterChangeHandler(selectedYear) {
     setFilteredYear(selectedYear);
   }
 
   const filteredExpenses = props.items.filter((expense) => {
-    return new Date(expense.date).getFullYear().toString() === `${filteredYear}`;
+    return (
+      new Date(expense.date).getFullYear().toString() === `${filteredYear}`
+    );
   });
 
   function deleteHandler(itemKey) {
@@ -24,6 +40,7 @@ function Expenses(props) {
     <Card className="expenses">
       <ExpensesFilter
         selected={filteredYear}
+        years={yearList}
         onChangeFilter={filterChangeHandler}
       />
       <ExpensesChart expenses={filteredExpenses} />

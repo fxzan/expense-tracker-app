@@ -82,7 +82,7 @@ function Auth() {
         </button>
         {isLogin && (
           <Link to="/expense-tracker-app/reset-password">
-            <span className="link-text">Forgot Password?</span>
+            <span className="link-text forgot">Forgot Password?</span>
           </Link>
         )}
         <span>
