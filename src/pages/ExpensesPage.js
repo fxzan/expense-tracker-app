@@ -1,34 +1,80 @@
 import React, { useState } from "react";
 import Expenses from "../components/Expenses/Expenses";
 import NewExpense from "../components/NewExpense/NewExpense";
+import AuthContext from "../store/auth-context";
 
 const ExpensesPage = () => {
-  const initialExpensesData =
-    JSON.parse(localStorage.getItem("ExpensesData")) || [];
+  const authCtx = React.useContext(AuthContext);
+  const [expensesData, setExpensesData] = useState([]);
 
-  let lastID = JSON.parse(localStorage.getItem("ID")) || 0;
+  const fetchExpenseData = React.useCallback(async () => {
+    try {
+      const response = await fetch(
+        `https://expense-tracker-28402-default-rtdb.asia-southeast1.firebasedatabase.app/${authCtx.userId}/expenses.json`
+      );
+      const data = await response.json();
+      if (!response.ok) {
+        console.log(data)
+        throw new Error(`${data.error.code} ${data.error.message}`)
+      }
+      const expenseList = [];
+        for (let key in data) {
+        expenseList.push({ ...data[key], id: key });
+      }
+      setExpensesData(expenseList);
+    } catch (error) {
+      alert(error);
+    }
+  }, [authCtx.userId]);
 
-  const [expensesData, setExpensesData] = useState(initialExpensesData);
-  const [idNum, setIdNum] = useState(lastID + 1);
+  React.useEffect(() => {
+    fetchExpenseData();
+  }, [fetchExpenseData]);
 
-  function addExpenseHandler(expense) {
-    setExpensesData((prevList) => {
-      const newExpenses = [...prevList, { id: "e" + idNum, ...expense }];
-      localStorage.setItem("ExpensesData", JSON.stringify(newExpenses));
-      localStorage.setItem("ID", idNum);
-      return newExpenses;
-    });
-    setIdNum(idNum + 1);
+  async function addExpenseHandler(expense) {
+    try {
+      const response = await fetch(
+        `https://expense-tracker-28402-default-rtdb.asia-southeast1.firebasedatabase.app/${authCtx.userId}/expenses.json`,
+        {
+          method: "POST",
+          body: JSON.stringify(expense),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      const data = await response.json();
+      if (!response.ok) {
+        console.log(data);
+        throw new Error(`${data.error.code} ${data.error.message}`);
+      }
+      console.log(data);
+      fetchExpenseData();
+    } catch (error) {
+      alert(error);
+    }
   }
 
-  function deleteExpenseHandler(id) {
-    setExpensesData((prevList) => {
-      const newExpenses = prevList.filter((expense) => {
-        return expense.id !== id;
-      });
-      localStorage.setItem("ExpensesData", JSON.stringify(newExpenses));
-      return newExpenses;
-    });
+  async function deleteExpenseHandler(id) {
+    try {
+      const response = await fetch(
+        `https://expense-tracker-28402-default-rtdb.asia-southeast1.firebasedatabase.app/${authCtx.userId}/expenses/${id}.json`,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      const data = await response.json();
+      if (!response.ok) {
+        console.log(data);
+        throw new Error(`${data.error.code} ${data.error.message}`);
+      }
+      fetchExpenseData();
+    } catch (error) {
+      alert(error);
+    }
   }
 
   return (

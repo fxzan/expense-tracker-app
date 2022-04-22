@@ -30,10 +30,10 @@ function App() {
         <Route path="/expense-tracker-app/login">
           {!authCtx.isLoggedIn && <Auth />}
           {authCtx.isLoggedIn && (
-            <Redirect to="/expense-tracker-app/expenses" />
+            <Redirect to="/expense-tracker-app/user-profile" />
           )}
         </Route>
-        <Route path="/expense-tracker-app/expenses">
+        <Route path="/expense-tracker-app/expenses" exact>
           {!authCtx.isLoggedIn && <Redirect to="/expense-tracker-app/login" />}
           {authCtx.isLoggedIn && <ExpensesPage />}
         </Route>
