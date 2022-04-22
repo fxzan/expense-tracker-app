@@ -3,6 +3,7 @@ import Card from "../UI/Card";
 import AuthContext from "../../store/auth-context";
 import "./Auth.css";
 import { useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function Auth() {
   const history = useHistory();
@@ -76,8 +77,14 @@ function Auth() {
             ref={confPassRef}
           />
         )}
-        <button className="action-button">{isLogin ? "Login" : "Sign Up"}</button>
-        {isLogin && <span className="link-text">Forgot Password?</span>}
+        <button className="action-button">
+          {isLogin ? "Login" : "Sign Up"}
+        </button>
+        {isLogin && (
+          <Link to="/expense-tracker-app/reset-password">
+            <span className="link-text">Forgot Password?</span>
+          </Link>
+        )}
         <span>
           {isLogin ? "Create an account? " : "Have an account? "}
           <span className="link-text" onClick={changeLoginMode}>

@@ -27,3 +27,11 @@
 .auth-form span {
   margin: 1rem auto;
 }
+
+a {
+  text-decoration: none;
+}
+
+a:hover, a:active {
+  text-decoration: none;
+}
