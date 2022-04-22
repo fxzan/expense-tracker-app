@@ -13,3 +13,31 @@ body {
   background-color: #3f3f3f;
 }
 
+.link-text {
+  text-decoration: underline;
+  color: rgb(177, 177, 216);
+  cursor: pointer;
+}
+
+.link-text:hover, .link-text:active {
+  text-decoration: none;
+}
+
+.action-button {
+  margin: 2rem 1rem 0rem;
+  font-size: 1rem;
+  font-weight: bold;
+  color: white;
+  width: 25%;
+  background-color: #40005d;
+  border: 1px solid white;
+  padding: 0.5rem;
+  border-radius: 12px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.action-button:hover, .action-button:active {
+  background-color: #510674;
+  border-color: #510674;
+}

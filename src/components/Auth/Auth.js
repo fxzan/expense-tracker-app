@@ -47,7 +47,7 @@ function Auth() {
       const data = await response.json();
       console.log(data);
       authCtx.login(data.idToken);
-      history.replace("/expense-tracker-app/expenses");
+      history.replace("/expense-tracker-app/user-profile");
     } catch (error) {
       alert(error);
     }
@@ -76,7 +76,7 @@ function Auth() {
             ref={confPassRef}
           />
         )}
-        <button>{isLogin ? "Login" : "Sign Up"}</button>
+        <button className="action-button">{isLogin ? "Login" : "Sign Up"}</button>
         {isLogin && <span className="link-text">Forgot Password?</span>}
         <span>
           {isLogin ? "Create an account? " : "Have an account? "}

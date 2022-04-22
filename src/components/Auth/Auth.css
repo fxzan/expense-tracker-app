@@ -24,26 +24,6 @@
   max-width: 100%;
 }
 
-.auth-form button {
-  margin: 2rem auto 0rem;
-  font-size: 1rem;
-  font-weight: bold;
-  color: white;
-  width: 25%;
-  background-color: #40005d;
-  border: 1px solid white;
-  padding: 0.5rem;
-  border-radius: 12px;
-  text-align: center;
-  cursor: pointer;
-}
-
 .auth-form span {
   margin: 1rem auto;
-}
-
-.link-text {
-  text-decoration: underline;
-  color: rgb(177, 177, 216);
-  cursor: pointer;
 }
