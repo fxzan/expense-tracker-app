@@ -5,37 +5,49 @@ import Auth from "./components/Auth/Auth";
 import ExpensesPage from "./pages/ExpensesPage";
 import UserProfile from "./components/UserProfile/UserProfile";
 import AuthContext from "./store/auth-context";
+import Header from "./components/UI/Header";
 
 function App() {
   const authCtx = React.useContext(AuthContext);
 
   return (
-    <Switch>
-      <Route path="/" exact>
-        {!authCtx.isLoggedIn && <Redirect to="/expense-tracker-app/login" />}
-        {authCtx.isLoggedIn && <Redirect to="/expense-tracker-app/expenses" />}
-      </Route>
-      <Route path="/expense-tracker-app" exact>
-        {!authCtx.isLoggedIn && <Redirect to="/expense-tracker-app/login" />}
-        {authCtx.isLoggedIn && <Redirect to="/expense-tracker-app/expenses" />}
-      </Route>
-      <Route path="/expense-tracker-app/login">
-        {!authCtx.isLoggedIn && <Auth />}
-        {authCtx.isLoggedIn && <Redirect to="/expense-tracker-app/expenses" />}
-      </Route>
-      <Route path="/expense-tracker-app/expenses">
-        {!authCtx.isLoggedIn && <Redirect to="/expense-tracker-app/login" />}
-        {authCtx.isLoggedIn && <ExpensesPage />}
-      </Route>
-      <Route path="/expense-tracker-app/user-profile">
-        {!authCtx.isLoggedIn && <Redirect to="/expense-tracker-app/login" />}
-        {authCtx.isLoggedIn && <UserProfile />}
-      </Route>
-      <Route path="/*">
-        {!authCtx.isLoggedIn && <Redirect to="/expense-tracker-app/login" />}
-        {authCtx.isLoggedIn && <Redirect to="/expense-tracker-app/user-profile" />}
-      </Route>
-    </Switch>
+    <>
+      <Header />
+      <Switch>
+        <Route path="/" exact>
+          {!authCtx.isLoggedIn && <Redirect to="/expense-tracker-app/login" />}
+          {authCtx.isLoggedIn && (
+            <Redirect to="/expense-tracker-app/expenses" />
+          )}
+        </Route>
+        <Route path="/expense-tracker-app" exact>
+          {!authCtx.isLoggedIn && <Redirect to="/expense-tracker-app/login" />}
+          {authCtx.isLoggedIn && (
+            <Redirect to="/expense-tracker-app/expenses" />
+          )}
+        </Route>
+        <Route path="/expense-tracker-app/login">
+          {!authCtx.isLoggedIn && <Auth />}
+          {authCtx.isLoggedIn && (
+            <Redirect to="/expense-tracker-app/expenses" />
+          )}
+        </Route>
+        <Route path="/expense-tracker-app/expenses">
+          {!authCtx.isLoggedIn && <Redirect to="/expense-tracker-app/login" />}
+          {authCtx.isLoggedIn && <ExpensesPage />}
+        </Route>
+        <Route path="/expense-tracker-app/user-profile">
+          {!authCtx.isLoggedIn && <Redirect to="/expense-tracker-app/login" />}
+          {authCtx.isLoggedIn && <UserProfile />}
+        </Route>
+        <Route path="/*">
+          {!authCtx.isLoggedIn && <Redirect to="/expense-tracker-app/login" />}
+          {authCtx.isLoggedIn && (
+            <Redirect to="/expense-tracker-app/user-profile" />
+          )}
+        </Route>
+      </Switch>
+    </>
   );
 }
 
