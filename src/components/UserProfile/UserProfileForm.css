@@ -1,0 +1,56 @@
+.user-profile-form {
+  display: flex;
+  flex-direction: column;
+  background-color: #252836;
+  color: white;
+  text-align: center;
+}
+
+.user-profile-form form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profile-form-input {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+}
+
+.user-profile-form label {
+  margin-left: 0.5rem;
+}
+
+.user-profile-form input {
+  margin: 0.75rem 1rem;
+  color: #1F1D2B;
+  font: inherit;
+  padding: 0.5rem;
+  margin: 0.5 1rem;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+}
+
+.user-profile-form input[type="button"] {
+  color: white;
+  font-weight: bold;
+}
+
+.user-profile-form-actions {
+  margin-top: 1rem;
+  width: 100%;
+}
+
+.upload-button {
+  display: none;
+}
+
+.profile-form-image {
+    margin: 1rem 0 2rem;
+    height: 150px;
+    width: 150px;
+    object-fit: cover;
+}

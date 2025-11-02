@@ -1,0 +1,4 @@
+#525298 - Primary buttons and accent colors
+#1F1D2B - background
+#252836 - header, footer
+#ACACD3 - light text color

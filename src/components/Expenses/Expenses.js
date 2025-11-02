@@ -7,19 +7,13 @@ import "./Expenses.css";
 
 function Expenses(props) {
   const [yearList, setYearList] = useState([]);
-  const [filteredYear, setFilteredYear] = useState(yearList[0]);
+  const [filteredYear, setFilteredYear] = useState("All");
+
+  console.log(filteredYear);
 
   React.useEffect(() => {
-    let listOfYears = {};
-    props.items.forEach((item) => {
-      listOfYears[new Date(item.date).getFullYear().toString()] = 1;
-    });
-    listOfYears = Object.keys(listOfYears)
-      .filter((key) => key)
-      .sort()
-      .reverse();
+    const listOfYears = [... new Set(props.items.map(item => new Date(item.date).getFullYear().toString()))].sort().reverse();
     setYearList(listOfYears);
-    setFilteredYear(listOfYears[0]);
   }, [props.items]);
 
   function filterChangeHandler(selectedYear) {
@@ -27,6 +21,9 @@ function Expenses(props) {
   }
 
   const filteredExpenses = props.items.filter((expense) => {
+    if (filteredYear === "All") {
+      return (expense);
+    }
     return (
       new Date(expense.date).getFullYear().toString() === `${filteredYear}`
     );
@@ -37,7 +34,7 @@ function Expenses(props) {
   }
 
   return (
-    <Card className="expenses">
+    <div className="expenses">
       <ExpensesFilter
         selected={filteredYear}
         years={yearList}
@@ -45,7 +42,7 @@ function Expenses(props) {
       />
       <ExpensesChart expenses={filteredExpenses} />
       <ExpensesList items={filteredExpenses} onDelete={deleteHandler} />
-    </Card>
+    </div>
   );
 }
 

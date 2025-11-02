@@ -1,0 +1,70 @@
+.user-profile {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background-color: #252836;
+  align-items: center;
+  text-align: center;
+  padding-bottom: 1.5rem;
+}
+
+.user-profile h1 {
+  color: white;
+}
+
+.user-details p {
+  font-size: 1.5rem;
+}
+
+.user-details-email {
+  font-size: 1rem;
+  color: #5d5d77;
+}
+
+.user-details img {
+    margin-top: 2rem;
+    height: 200px;
+    width: 200px;
+    border-radius: 100px;
+    object-fit: cover;
+}
+
+.expenses-link {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #1F1D2B;
+}
+
+.expenses-link-container {
+    display: flex;
+    background-color: #ACACD3;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    margin: 2rem 0 0;
+    transition: ease 0.2s;
+}
+
+.expenses-link-container:hover, .expenses-link-container:active {
+    background-color: #797993;
+    box-shadow: 0 5px 15px rgba(38, 38, 38, 0.4);
+}
+
+.expenses-icon {
+    cursor: pointer;
+    width: 20px;
+}
+
+.email-verify {
+  font-size: 0.8rem;
+  padding-left: 1rem;
+  cursor: pointer;
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+.email-verify:hover, .email-verify:active {
+  text-decoration: none;
+}

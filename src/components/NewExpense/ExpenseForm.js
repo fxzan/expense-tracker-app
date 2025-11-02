@@ -1,7 +1,9 @@
 import React, { useState } from 'react'; 
+import AuthContext from '../../store/auth-context';
 import './ExpenseForm.css';
 
 function ExpenseForm(props) {
+    const authCtx = React.useContext(AuthContext);
     const [enteredTitle, setEnteredTitle] = useState('');
     const [enteredAmount, setEnteredAmount] = useState('');
     const [enteredDate, setEnteredDate] = useState('');
@@ -51,7 +53,8 @@ function ExpenseForm(props) {
         const expenseData = {
             title: enteredTitle,
             amount: +enteredAmount,
-            date: new Date(enteredDate)
+            date: new Date(enteredDate),
+            user_id: authCtx.userId
         };
         props.onSaveExpenseData(expenseData);
         setEnteredTitle('');
@@ -59,27 +62,46 @@ function ExpenseForm(props) {
         setEnteredDate('');
     };
 
-    return(
-        <form onSubmit={submitHandler}>
-            <div className="new-expense__controls">
-                <div className='new-expense__control'>
-                    <label>Title</label>
-                    <input type='text' value={enteredTitle} onChange={titleChangeHandler} required />
-                </div>
-                <div className='new-expense__control'>
-                    <label>Amount</label>
-                    <input type='number' min='0.01' step='0.01' value={enteredAmount} onChange={amountChangeHandler} required />
-                </div>
-                <div className='new-expense__control'>
-                    <label>Date</label>
-                    <input type='date' min='1970-01-01' max='2050-12-31' value={enteredDate} onChange={dateChangeHandler} required />
-                </div>
-            </div>
-            <div className='new-expense__actions'>
-                <button onClick={props.onCancel}>Cancel</button>
-                <button type='submit'>Add Expense</button>
-            </div>
-        </form>
+    return (
+      <form onSubmit={submitHandler}>
+        <div className="new-expense__controls">
+          <div className="new-expense__control">
+            <label>Title</label>
+            <input
+              type="text"
+              value={enteredTitle}
+              onChange={titleChangeHandler}
+              required
+            />
+          </div>
+          <div className="new-expense__control">
+            <label>Amount</label>
+            <input
+              type="number"
+              min="0.01"
+              step="0.01"
+              value={enteredAmount}
+              onChange={amountChangeHandler}
+              required
+            />
+          </div>
+          <div className="new-expense__control">
+            <label>Date</label>
+            <input
+              type="date"
+              min="1970-01-01"
+              max="2050-12-31"
+              value={enteredDate}
+              onChange={dateChangeHandler}
+              required
+            />
+          </div>
+        </div>
+        <div className="new-expense__actions">
+          <button className="action-button" type="submit">Add Expense</button>
+          <button className="action-button cancel-button" onClick={props.onCancel}>Cancel</button>
+        </div>
+      </form>
     );
 };
 

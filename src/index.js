@@ -1,15 +1,20 @@
-import ReactDOM from "react-dom";
+import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 
 import "./index.css";
 import App from "./App";
 import { AuthContextProvider } from "./store/auth-context";
+import { InfoModalContextProvider } from "./store/infoModal-context";
 
-ReactDOM.render(
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
   <BrowserRouter>
-    <AuthContextProvider>
-      <App />
-    </AuthContextProvider>
-  </BrowserRouter>,
-  document.getElementById("root")
+      <AuthContextProvider>
+         <InfoModalContextProvider>
+        <div className="content-wrapper">
+          <App />
+        </div>
+        </InfoModalContextProvider>
+      </AuthContextProvider>
+  </BrowserRouter>
 );

@@ -1,56 +1,43 @@
 import React from "react";
-import { Route, Switch, Redirect } from "react-router-dom";
+import { Route, Routes, Navigate } from "react-router-dom";
 
-import Auth from "./components/Auth/Auth";
+import Auth from "./pages/Auth";
 import ExpensesPage from "./pages/ExpensesPage";
-import UserProfile from "./components/UserProfile/UserProfile";
+import UserProfile from "./pages/UserProfile";
 import AuthContext from "./store/auth-context";
 import Header from "./components/UI/Header";
-import ResetPassword from "./components/ResetPassword/ResetPassword";
+import ResetPassword from "./pages/ResetPassword";
 
 function App() {
   const authCtx = React.useContext(AuthContext);
 
   return (
     <>
-      <Header />
-      <Switch>
-        <Route path="/" exact>
-          {!authCtx.isLoggedIn && <Redirect to="/expense-tracker-app/login" />}
-          {authCtx.isLoggedIn && (
-            <Redirect to="/expense-tracker-app/expenses" />
-          )}
-        </Route>
-        <Route path="/expense-tracker-app" exact>
-          {!authCtx.isLoggedIn && <Redirect to="/expense-tracker-app/login" />}
-          {authCtx.isLoggedIn && (
-            <Redirect to="/expense-tracker-app/user-profile" />
-          )}
-        </Route>
-        <Route path="/expense-tracker-app/login">
-          {!authCtx.isLoggedIn && <Auth />}
-          {authCtx.isLoggedIn && (
-            <Redirect to="/expense-tracker-app/user-profile" />
-          )}
-        </Route>
-        <Route path="/expense-tracker-app/expenses" exact>
-          {!authCtx.isLoggedIn && <Redirect to="/expense-tracker-app/login" />}
-          {authCtx.isLoggedIn && <ExpensesPage />}
-        </Route>
-        <Route path="/expense-tracker-app/user-profile">
-          {!authCtx.isLoggedIn && <Redirect to="/expense-tracker-app/login" />}
-          {authCtx.isLoggedIn && <UserProfile />}
-        </Route>
-        <Route path="/expense-tracker-app/reset-password">
-          <ResetPassword />
-        </Route>
-        <Route path="/*">
-          {!authCtx.isLoggedIn && <Redirect to="/expense-tracker-app/login" />}
-          {authCtx.isLoggedIn && (
-            <Redirect to="/expense-tracker-app/user-profile" />
-          )}
-        </Route>
-      </Switch>
+      <div className="content-container">
+        <Header />
+        <Routes>
+          <Route path="/" exact element={
+            !authCtx.isLoggedIn ? <Navigate to="/expense-tracker-app/login" replace /> : <Navigate to="/expense-tracker-app/expenses" replace/>
+          } />
+          <Route path="/expense-tracker-app" exact element={
+            !authCtx.isLoggedIn ? <Navigate to="/expense-tracker-app/login" replace /> : <Navigate to="/expense-tracker-app/expenses" replace/>
+          } />
+          <Route path="/expense-tracker-app/login" element={
+            !authCtx.isLoggedIn ? <Auth /> : <Navigate to="/expense-tracker-app/expenses" replace/>
+          } />
+          <Route path="/expense-tracker-app/expenses" exact element={
+            !authCtx.isLoggedIn ? <Navigate to="/expense-tracker-app/login" replace /> : <ExpensesPage />
+          } />
+          <Route path="/expense-tracker-app/user-profile" element={
+            !authCtx.isLoggedIn ? <Navigate to="/expense-tracker-app/login" replace /> : <UserProfile />
+          } />
+          <Route path="/expense-tracker-app/reset-password" element={<ResetPassword />
+          } />
+          <Route path="/*" element={
+            !authCtx.isLoggedIn ? <Navigate to="/expense-tracker-app/login" replace /> : <Navigate to="/expense-tracker-app/expenses" replace />
+          } />
+        </Routes>
+      </div>
     </>
   );
 }

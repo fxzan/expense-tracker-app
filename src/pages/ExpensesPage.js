@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import Expenses from "../components/Expenses/Expenses";
 import NewExpense from "../components/NewExpense/NewExpense";
+import supabase from "../helper/supabaseClient";
 import AuthContext from "../store/auth-context";
+import Card from "../components/UI/Card";
 
 const ExpensesPage = () => {
   const authCtx = React.useContext(AuthContext);
@@ -9,19 +11,14 @@ const ExpensesPage = () => {
 
   const fetchExpenseData = React.useCallback(async () => {
     try {
-      const response = await fetch(
-        `https://expense-tracker-28402-default-rtdb.asia-southeast1.firebasedatabase.app/${authCtx.userId}/expenses.json`
-      );
-      const data = await response.json();
-      if (!response.ok) {
-        console.log(data)
-        throw new Error(`${data.error.code} ${data.error.message}`)
+      const {data, error} = await supabase.from("expenses").select("*").eq("user_id", authCtx.userId).order("date", {ascending : false});
+      
+      if (error) {
+        console.log(error);
+        throw new Error(`${error.code} ${error.message}`)
       }
-      const expenseList = [];
-        for (let key in data) {
-        expenseList.push({ ...data[key], id: key });
-      }
-      setExpensesData(expenseList);
+
+      setExpensesData(data || []);
     } catch (error) {
       alert(error);
     }
@@ -33,22 +30,12 @@ const ExpensesPage = () => {
 
   async function addExpenseHandler(expense) {
     try {
-      const response = await fetch(
-        `https://expense-tracker-28402-default-rtdb.asia-southeast1.firebasedatabase.app/${authCtx.userId}/expenses.json`,
-        {
-          method: "POST",
-          body: JSON.stringify(expense),
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
-      const data = await response.json();
-      if (!response.ok) {
-        console.log(data);
-        throw new Error(`${data.error.code} ${data.error.message}`);
+      const {data, error} = await supabase.from("expenses").insert(expense).select();
+
+      if (error) {
+        console.log(error);
+        throw new Error(`${error.code} ${error.message}`)
       }
-      console.log(data);
       fetchExpenseData();
     } catch (error) {
       alert(error);
@@ -57,19 +44,11 @@ const ExpensesPage = () => {
 
   async function deleteExpenseHandler(id) {
     try {
-      const response = await fetch(
-        `https://expense-tracker-28402-default-rtdb.asia-southeast1.firebasedatabase.app/${authCtx.userId}/expenses/${id}.json`,
-        {
-          method: "DELETE",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
-      const data = await response.json();
-      if (!response.ok) {
-        console.log(data);
-        throw new Error(`${data.error.code} ${data.error.message}`);
+      const {data, error} = await supabase.from("expenses").delete().eq("id", id).eq("user_id", authCtx.userId);
+
+      if (error) {
+        console.log(error);
+        throw new Error(`${error.code} ${error.message}`)
       }
       fetchExpenseData();
     } catch (error) {
@@ -78,10 +57,10 @@ const ExpensesPage = () => {
   }
 
   return (
-    <div>
+    <Card className="new-expense">
       <NewExpense onAddExpenseData={addExpenseHandler} />
       <Expenses items={expensesData} onDelete={deleteExpenseHandler} />
-    </div>
+    </Card>
   );
 };
 
