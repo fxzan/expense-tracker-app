@@ -44,23 +44,25 @@ function ResetPassword() {
   }
 
   return (
-    <Card className="reset-password-form">
-      <h1>Reset Password</h1>
-      {!isLinkSent && (
-        <form onSubmit={submitHandler}>
-          <input id="email" type="email" placeholder="Email" ref={emailRef} />
-          <button className="action-button">Send Code</button>
-        </form>
-      )}
-      {isLinkSent && (
-        <div className="success-reset">
-          <p>Successfully sent password reset link to your email.</p>
-          <button className="action-button" onClick={returnHandler}>
-            Return to Login
-          </button>
-        </div>
-      )}
-    </Card>
+    <div className="auth-container">
+      <div className="reset-password-form">
+        <h1>Reset Password</h1>
+        {!isLinkSent && (
+          <form onSubmit={submitHandler}>
+            <input id="email" type="email" placeholder="Email" ref={emailRef} />
+            <button className="action-button">Send Code</button>
+          </form>
+        )}
+        {isLinkSent && (
+          <div className="success-reset">
+            <p>Successfully sent password reset link to your email.</p>
+            <button className="action-button" onClick={returnHandler}>
+              Return to Login
+            </button>
+          </div>
+        )}
+      </div>
+    </div>
   );
 }
 
