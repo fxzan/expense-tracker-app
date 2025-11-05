@@ -150,7 +150,7 @@ function UserProfile() {
         />
       )}
       {!isEditing && (
-        <div className="expenses-link-container" onClick={() => navigate("/expense-tracker-app/expenses")}>
+        <div className="expenses-link-container" onClick={() => navigate("/expenses")}>
           <img className="expenses-icon" src={homeImg} alt="Expenses" />
           <span className="expenses-link">Expenses</span>
         </div>

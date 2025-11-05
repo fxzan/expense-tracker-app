@@ -42,7 +42,7 @@ function ResetPassword() {
   }
 
   function returnHandler() {
-    navigate("/expense-tracker-app/login");
+    navigate("/login");
   }
 
   return (

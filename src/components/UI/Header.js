@@ -13,7 +13,7 @@ function Header() {
 
   function logoutHandler() {
     authCtx.logout();
-    navigate("/expense-tracker-app/login", {replace: true});
+    navigate("/login", {replace: true});
   }
   
   return (
@@ -24,9 +24,9 @@ function Header() {
             <img className="log-out" onClick={logoutHandler} src={logoutImg} alt="Logout" />
           </div>
           <div className="home-icon-container">
-            <img className="home-icon" onClick={() => navigate("/expense-tracker-app/expenses")} src={homeImg} alt="Expenses" />
+            <img className="home-icon" onClick={() => navigate("/expenses")} src={homeImg} alt="Expenses" />
           </div>
-          <div className="profile-icon-container" onClick={() => navigate("/expense-tracker-app/user-profile")}>
+          <div className="profile-icon-container" onClick={() => navigate("/user-profile")}>
             <img className="profile-icon" src={authCtx.imageUrl || defaultPhoto} alt="" />
           </div>
         </div>

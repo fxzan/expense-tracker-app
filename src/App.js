@@ -17,24 +17,24 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" exact element={
-            !authCtx.isLoggedIn ? <Navigate to="/expense-tracker-app/login" replace /> : <Navigate to="/expense-tracker-app/expenses" replace/>
+            !authCtx.isLoggedIn ? <Navigate to="/login" replace /> : <Navigate to="/expenses" replace/>
           } />
           <Route path="/expense-tracker-app" exact element={
-            !authCtx.isLoggedIn ? <Navigate to="/expense-tracker-app/login" replace /> : <Navigate to="/expense-tracker-app/expenses" replace/>
+            !authCtx.isLoggedIn ? <Navigate to="/login" replace /> : <Navigate to="/expenses" replace/>
           } />
-          <Route path="/expense-tracker-app/login" element={
-            !authCtx.isLoggedIn ? <Auth /> : <Navigate to="/expense-tracker-app/expenses" replace/>
+          <Route path="/login" element={
+            !authCtx.isLoggedIn ? <Auth /> : <Navigate to="/expenses" replace/>
           } />
-          <Route path="/expense-tracker-app/expenses" exact element={
-            !authCtx.isLoggedIn ? <Navigate to="/expense-tracker-app/login" replace /> : <ExpensesPage />
+          <Route path="/expenses" exact element={
+            !authCtx.isLoggedIn ? <Navigate to="/login" replace /> : <ExpensesPage />
           } />
-          <Route path="/expense-tracker-app/user-profile" element={
-            !authCtx.isLoggedIn ? <Navigate to="/expense-tracker-app/login" replace /> : <UserProfile />
+          <Route path="/user-profile" element={
+            !authCtx.isLoggedIn ? <Navigate to="/login" replace /> : <UserProfile />
           } />
-          <Route path="/expense-tracker-app/reset-password" element={<ResetPassword />
+          <Route path="/reset-password" element={<ResetPassword />
           } />
           <Route path="/*" element={
-            !authCtx.isLoggedIn ? <Navigate to="/expense-tracker-app/login" replace /> : <Navigate to="/expense-tracker-app/expenses" replace />
+            !authCtx.isLoggedIn ? <Navigate to="/login" replace /> : <Navigate to="/expenses" replace />
           } />
         </Routes>
       </div>

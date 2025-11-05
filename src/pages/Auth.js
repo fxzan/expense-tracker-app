@@ -100,7 +100,7 @@ function Auth() {
             {!isSignUp ? "Login" : "Sign Up"}
           </button>
           {!isSignUp && (
-            <Link to="/expense-tracker-app/reset-password">
+            <Link to="/reset-password">
               <span className="link-text forgot">Forgot Password?</span>
             </Link>
           )}
