@@ -1,11 +1,13 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import Card from "../components/UI/Card";
-import "./ResetPassword.css";
+import InfoModalContext from "../store/infoModal-context";
+import "./Auth.css";
+import backImg from "./left.png";
 
 function ResetPassword() {
   const navigate = useNavigate();
   const emailRef = React.useRef();
+  const modalCtx = React.useContext(InfoModalContext);
   const [isLinkSent, setLinkSent] = React.useState(false);
 
   async function submitHandler(event) {
@@ -29,13 +31,13 @@ function ResetPassword() {
 
       if (!response.ok) {
         console.log(data);
-        throw new Error(`${data.error.code} ${data.error.message}`);
+        throw new Error(`${data.error.message}`);
       }
 
       console.log(data);
       setLinkSent(true);
     } catch (error) {
-      alert(error);
+      modalCtx.showModal(error);
     }
   }
 
@@ -44,25 +46,28 @@ function ResetPassword() {
   }
 
   return (
-    <div className="auth-container">
-      <div className="reset-password-form">
-        <h1>Reset Password</h1>
-        {!isLinkSent && (
-          <form onSubmit={submitHandler}>
-            <input id="email" type="email" placeholder="Email" ref={emailRef} />
-            <button className="action-button">Send Code</button>
-          </form>
-        )}
-        {isLinkSent && (
-          <div className="success-reset">
-            <p>Successfully sent password reset link to your email.</p>
-            <button className="action-button" onClick={returnHandler}>
-              Return to Login
-            </button>
-          </div>
-        )}
+    <>
+      <img src={backImg} alt="Back" onClick={() => navigate(-1)} className="back-button"/>
+      <div className="auth-container">
+        <div className="auth-form">
+          <h1>Reset Password</h1>
+          {!isLinkSent && (
+            <form onSubmit={submitHandler}>
+              <input id="email" type="email" placeholder="Email" ref={emailRef} required/>
+              <button className="action-button">Send Code</button>
+            </form>
+          )}
+          {isLinkSent && (
+            <div className="success-reset">
+              <p>Successfully sent password reset link to your email</p>
+              <button className="action-button" onClick={returnHandler}>
+                Return to Login
+              </button>
+            </div>
+          )}
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 

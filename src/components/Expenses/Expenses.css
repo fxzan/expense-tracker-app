@@ -1,6 +1,11 @@
 .expenses {
-  padding: 1rem;
+  padding: 0 1rem;
   background-color: #252836;
-  margin-top: 1rem;
   width: 100%;
+}
+
+@media (max-width: 720px) {
+  .expenses {
+    padding: 0.2rem;
+  }
 }

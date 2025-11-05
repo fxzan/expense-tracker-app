@@ -4,3 +4,16 @@
   width: 100%;
   text-align: center;
 }
+
+.new-expense button {
+  font-size: 1rem;
+}
+
+@media (max-width: 720px) {
+  .new-expense {
+    padding: 0.2rem;
+  }
+  .new-expense button {
+    font-size: 0.8rem;
+  }
+}

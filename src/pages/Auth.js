@@ -3,9 +3,11 @@ import Card from "../components/UI/Card";
 import AuthContext from "../store/auth-context";
 import "./Auth.css";
 import { Link } from "react-router-dom";
+import InfoModalContext from "../store/infoModal-context";
 
 function Auth() {
   const authCtx = React.useContext(AuthContext);
+  const modalCtx = React.useContext(InfoModalContext);
   const [isSignUp, setIsSignUp] = React.useState(false);
   const emailRef = React.useRef();
   const passRef = React.useRef();
@@ -58,7 +60,7 @@ function Auth() {
 
       if (!response.ok) {
         const data = await response.json();
-        throw new Error(`${data.error.code} ${data.error.message}`);
+        throw new Error(`${data.error.message}`);
       }
       else {
         const data = await response.json();
@@ -68,7 +70,7 @@ function Auth() {
         authCtx.login(data.idToken, data.email, data.localId, data.profilePicture);
       }
     } catch (error) {
-      alert(error);
+      modalCtx.showModal(error);
     }
   }
 
@@ -77,12 +79,13 @@ function Auth() {
       <div className="auth-form">
         <h1>{!isSignUp ? "Login" : "Sign Up"}</h1>
         <form onSubmit={loginHandler}>
-          <input id="email" type="email" placeholder="Email" ref={emailRef} />
+          <input id="email" type="email" placeholder="Email" ref={emailRef} required/>
           <input
             id="password"
             type="password"
             placeholder="Password"
             ref={passRef}
+            required
           />
           {isSignUp && (
             <input
@@ -90,6 +93,7 @@ function Auth() {
               type="password"
               placeholder="Confirm Password"
               ref={confPassRef}
+              required
             />
           )}
           <button className="action-button">

@@ -4,6 +4,7 @@
   align-items: center;
   padding: 0.5rem;
   margin: 1rem 0;
+  gap: 1rem;
   background-color: #1F1D2B;
 }
 
@@ -13,13 +14,21 @@
   align-items: center;
   justify-content: space-between;
   flex: 1;
-  position: relative;
+}
+
+.expense-item-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  flex: 1;
 }
 
 .expense-item h2 {
-  font-size: 1.4rem;
-  width: 18rem;
-  margin: 0 1rem;
+  font-size: 1.3rem;
+  width: 100%;
+  margin: 0;
   color: #ACACD3;
   text-align: left;
   overflow: hidden;
@@ -28,47 +37,29 @@
 }
 
 .expense-item__price {
-  font-size: 1.4rem;
+  font-size: 1.2rem;
+  width: 100%;
   font-weight: bold;
-  width: 20%;
   color: #a73939;
-  padding: 0.5rem;
-  border-radius: 12px;
-  text-align: center;
+  text-align: left;
 }
 
 .expense-item__delete {
-  margin-right: 1rem;
+  margin-right: 0.5rem;
   font-weight: bold;
   width: 30px;
   cursor: pointer;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 720px) {
   .expense-item h2 {
-    font-size: 1.1rem;
-    width: 9rem;
-    padding: 0;
-    margin-left: 0.5rem;
-    color: #ACACD3;
-    text-align: left;
+    font-size: 1rem;
   }
 
   .expense-item__price {
-    font-size: 1rem;
-    font-weight: bold;
-    width: 20%;
-    color: #a73939;
-    padding: 0;
-    border-radius: 12px;
-    text-align: center;
-    
+    font-size: 0.9rem;
   }
-
-  .expense-item__delete {
-    margin-right: 0.2rem;
-    font-weight: bold;
-    width: 30px;
-    cursor: pointer;
+  .expense-item__delete{
+    width: 20px;
   }
 }

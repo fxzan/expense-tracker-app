@@ -13,11 +13,11 @@
 }
 
 .user-details p {
-  font-size: 1.5rem;
+  font-size: 1.6rem;
 }
 
 .user-details-email {
-  font-size: 1rem;
+  font-size: 1.1rem;
   color: #5d5d77;
 }
 
@@ -29,8 +29,16 @@
     object-fit: cover;
 }
 
+.user-profile button {
+  font-size: 0.9rem;
+}
+
+.user-profile-form-actions button {
+  font-size: 1rem;
+}
+
 .expenses-link {
-    font-size: 1rem;
+    font-size: 1.1rem;
     font-weight: bold;
     color: #1F1D2B;
 }
@@ -58,7 +66,7 @@
 }
 
 .email-verify {
-  font-size: 0.8rem;
+  font-size: 1rem;
   padding-left: 1rem;
   cursor: pointer;
   color: #ffffff;
@@ -67,4 +75,31 @@
 
 .email-verify:hover, .email-verify:active {
   text-decoration: none;
+}
+
+@media (max-width: 720px) {
+  .user-profile h1{
+    font-size: 1.7rem;
+  }
+  .user-profile p{
+    font-size: 1.3rem;
+  }
+  .user-details-email {
+    font-size: 0.9rem;
+  }
+  .email-verify {
+    font-size: 0.8rem;
+  }
+  .user-details img{
+    width: 150px;
+    height: 150px;
+    border-radius: 75px;
+  }
+  .user-profile button{
+    font-size: 0.8rem;
+  }
+  .user-profile-form-actions button{
+    margin: 0.5rem auto;
+    width: 10rem;
+  }
 }

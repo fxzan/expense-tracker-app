@@ -17,8 +17,7 @@ body {
 
 .action-button {
   margin: 1rem;
-  font-size: 1rem;
-  font-weight: bold;
+  font-weight: 600;
   border-radius: 10px;
   text-align: center;
   min-width: 10rem;
@@ -36,20 +35,12 @@ body {
   box-shadow: 0 5px 15px rgba(38, 38, 38, 0.4);
 }
 
-.modal-button {
-  background-color: #252836;
-}
-
-.modal-button:hover, .modal-button:active {
-    background-color: #313547;
-}
-
 .cancel-button {
   background-color: #755298;
 }
 
 .cancel-button:hover, .cancel-button:active {
-    background-color: #553c6c;
+  background-color: #553c6c;
 }
 
 .link-text {
@@ -66,7 +57,7 @@ body {
   flex-direction: column;
   align-items: center;
   align-content: center;
-  width: 100%;
+  width: 90%;
   max-width: 40rem;
 }
 
@@ -75,17 +66,20 @@ body {
   flex-direction: column;
   align-items: center;
   align-content: center;
+  width: 100%;
 }
 
-@media (max-width: 767px) {
-  .content-container {
-    width: 100%;
-    max-width: 32rem;
-    padding: 0 5%;
-  }
+.back-button {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  width: 30px;
+  cursor: pointer;
+}
 
-  .profile-name {
-    display: none;
-  }
-  
+.success-reset {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
 }

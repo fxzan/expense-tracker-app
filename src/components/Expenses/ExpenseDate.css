@@ -27,3 +27,19 @@
   font-weight: bold;
   color: #1F1D2B;
 }
+
+@media (max-width: 720px) {
+  .expense-date {
+    width: 4rem;
+    height: 4rem;
+  }
+  .expense-date__month{
+    font-size: 0.5rem;
+  }
+  .expense-date__year{
+    font-size: 0.5rem;
+  }
+  .expense-date__day{
+    font-size: 1rem;
+  }
+}

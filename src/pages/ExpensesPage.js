@@ -3,10 +3,12 @@ import Expenses from "../components/Expenses/Expenses";
 import NewExpense from "../components/NewExpense/NewExpense";
 import supabase from "../helper/supabaseClient";
 import AuthContext from "../store/auth-context";
+import InfoModalContext from "../store/infoModal-context";
 import Card from "../components/UI/Card";
 
 const ExpensesPage = () => {
   const authCtx = React.useContext(AuthContext);
+  const modalCtx = React.useContext(InfoModalContext);
   const [expensesData, setExpensesData] = useState([]);
 
   const fetchExpenseData = React.useCallback(async () => {
@@ -20,7 +22,7 @@ const ExpensesPage = () => {
 
       setExpensesData(data || []);
     } catch (error) {
-      alert(error);
+      modalCtx.showModal(error);
     }
   }, [authCtx.userId]);
 
@@ -36,9 +38,9 @@ const ExpensesPage = () => {
         console.log(error);
         throw new Error(`${error.code} ${error.message}`)
       }
-      fetchExpenseData();
+      await fetchExpenseData();
     } catch (error) {
-      alert(error);
+      modalCtx.showModal(error);
     }
   }
 
@@ -50,9 +52,9 @@ const ExpensesPage = () => {
         console.log(error);
         throw new Error(`${error.code} ${error.message}`)
       }
-      fetchExpenseData();
+      await fetchExpenseData();
     } catch (error) {
-      alert(error);
+      modalCtx.showModal(error);
     }
   }
 

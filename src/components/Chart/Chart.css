@@ -7,3 +7,9 @@
   justify-content: space-around;
   height: 10rem;
 }
+
+@media (max-width: 720px) {
+  .chart{
+    padding: 1rem 0.2rem;
+  }
+}

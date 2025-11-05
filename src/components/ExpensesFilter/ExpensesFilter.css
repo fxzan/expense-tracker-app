@@ -1,12 +1,12 @@
 .expenses-filter {
   color: white;
-  padding: 0 1rem;
 }
 
 .expenses-filter__control {
   display: flex;
   width: 100%;
   align-items: center;
+  padding: 0 1rem;
   justify-content: space-between;
   margin: 1rem 0;
 }
@@ -25,4 +25,15 @@
   width: 6rem;
   font-weight: bold;
   border-radius: 6px;
+}
+
+@media (max-width: 720px) {
+  .expenses-filter label {
+    font-size: 0.8rem;
+  }
+  .expenses-filter select {
+    font-size: 0.8rem;
+    padding: 0.2rem;
+    width: 4rem;
+  }
 }

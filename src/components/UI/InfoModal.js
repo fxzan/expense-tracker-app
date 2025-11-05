@@ -21,13 +21,12 @@ function InfoModal(props) {
           document.removeEventListener('mousedown', handleClickOutside);
         };
       }, [clicked, props.onClose]);
+      
     return (
-        <div className="info-modal-backdrop">
-            <div className="info-modal" ref={modalRef}>
-                <div className="message-content"><p>{props.message}</p></div>
-                <button className="action-button modal-button" onClick={props.onClose}>Close</button>
-            </div>
-        </div>
+      <div className="info-modal" ref={modalRef}>
+          <div className="message-content"><p>{props.message}</p></div>
+          <button className="action-button modal-button" onClick={props.onClose}>Close</button>
+      </div>
     )
 }
 

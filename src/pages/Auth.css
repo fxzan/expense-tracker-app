@@ -36,6 +36,7 @@
   padding: 0.5rem;
   border-radius: 6px;
   border: 1px solid #ccc;
+  outline: none;
   width: 20rem;
   color: #1F1D2B;
   max-width: 100%;

@@ -1,10 +1,8 @@
 .new-expense__controls {
   display: flex;
   width: 100%;
-  padding: 0 1rem;
   justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap;
   margin-bottom: 2rem;
   text-align: center;
 }
@@ -13,20 +11,44 @@
   font-weight: bold;
   margin-top: 0.8rem;
   display: block;
+  font-size: 1.1rem;
 }
 
 .new-expense__control input {
   font: inherit;
-  font-size: 0.7rem;
+  font-size: 0.9rem;
   padding: 0.5rem;
   border-radius: 6px;
-  border: none;
+  border: 1px solid #ccc;
   outline: none;
-  width: 8rem;
+  width: 9rem;
   color: #1F1D2B;
 }
 
 .new-expense__actions {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (max-width: 720px) {
+  .new-expense__controls{
+    flex-direction: column;
+  }
+  .new-expense__control label{
+    font-size: 0.8rem;
+    width: 100%;
+    text-align: left;
+  }
+  .new-expense__control input{
+    width: 100%;
+    font-size: 0.7rem;
+  }
+  .new-expense__actions {
+    flex-direction: column;
+  }
+  .new-expense__actions button{
+    width: 10rem;
+    margin: 0 0 0.5rem;
+  }
 }

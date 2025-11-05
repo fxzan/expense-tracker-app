@@ -8,7 +8,7 @@ import homeImg from "../components/UI/wallet.png";
 import InfoModalContext from "../store/infoModal-context";
 
 function UserProfile() {
-  const info = useContext(InfoModalContext);
+  const modalCtx = useContext(InfoModalContext);
   const navigate = useNavigate();
   const authCtx = useContext(AuthContext);
   const [isEmailVerified, setEmailVerified] = useState(true);
@@ -36,20 +36,20 @@ function UserProfile() {
 
       if (!response.ok) {
         if (data.error.message === "INVALID_ID_TOKEN") {
-          info.showModal("Logged out due to session expiry");
-          authCtx.logout();
+          modalCtx.showModal("Logged out due to session expiry");
+          setTimeout(() => {authCtx.logout()}, 2000);
           return;
         }
         console.log(data.error);
         authCtx.logout();
-        throw new Error(`${data.error.code} ${data.error.message}`);
+        throw new Error(`${data.error.message}`);
       }
       
       setEmailVerified(data.users[0].emailVerified);
       authCtx.userNameSet(data.users[0].displayName);
       authCtx.imageUrlSet(data.users[0].photoUrl || "");
     } catch (error) {
-      alert(error);
+      modalCtx.showModal(error);
     }
   }, [authCtx]);
 
@@ -77,12 +77,11 @@ function UserProfile() {
       const data = await response.json();
 
       if (!response.ok) {
-        throw new Error(`${data.error.code} ${data.error.message}`);
+        throw new Error(`${data.error.message}`);
       }
-
-      fetchUserDetails();
+      await fetchUserDetails();
     } catch (error) {
-      alert(error);
+      modalCtx.showModal(error);
     }
   };
 
@@ -105,13 +104,13 @@ function UserProfile() {
       const data = await response.json();
 
       if (!response.ok) {
-        throw new Error(`${data.error.code} ${data.error.message}`);
+        throw new Error(`${data.error.message}`);
       }
       console.log(data);
-      info.showModal("Verification link sent to your email.");
+      modalCtx.showModal("Verification link sent to your email");
       fetchUserDetails();
     } catch (error) {
-      alert(error);
+      modalCtx.showModal(error);
     }
   }
 
@@ -127,17 +126,17 @@ function UserProfile() {
     <Card className="user-profile">
       <h1>Profile</h1>
       <div className="user-details">
-          <img src={authCtx.imageUrl || defaultPhoto} alt="" />
-          <p>{authCtx.userName}
-            <br/>
-            <span className="user-details-email">{authCtx.emailId}</span>
-            {!isEmailVerified && (
-              <span className="email-verify" onClick={verifyEmailHandler}>
-                (Verify)
-              </span>
-            )}
-          </p>
-        </div>
+        <img src={authCtx.imageUrl || defaultPhoto} alt="" />
+        <p>{authCtx.userName}
+          <br/>
+          <span className="user-details-email">{authCtx.emailId}</span>
+          {!isEmailVerified && (
+            <span className="email-verify" onClick={verifyEmailHandler}>
+              (Verify)
+            </span>
+          )}
+        </p>
+      </div>
       {!isEditing && (
         <button className="action-button" onClick={editProfileHandler}>
           Edit Profile
